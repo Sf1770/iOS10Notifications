@@ -19,7 +19,7 @@ class ViewController: UIViewController {
             if granted{
                 print("Notification access granted")
             } else{
-                print(error?.localizedDescription)
+                print(error?.localizedDescription as Any)
             }
             
         })
@@ -67,7 +67,7 @@ class ViewController: UIViewController {
         
         UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
             if error != nil{
-                print(error)
+                print(error!)
                 completion(false)
             } else{
                 completion(true)

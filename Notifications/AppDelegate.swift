@@ -48,9 +48,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func configureUserNotifications(){
         let favAction = UNNotificationAction(identifier: "fistBump", title: "👊🏾 Fist Bump", options: [])
-        let dismissAction = UNNotificationAction(identifier: "dismiss", title: "Dismiss", options: [])
+        let dismiss = UNNotificationAction(identifier: "dismiss", title: "Dismiss", options: [])
         
-        let category = UNNotificationCategory(identifier: "myNotificationCategory", actions: [], intentIdentifiers: [], options: [])
+        let category = UNNotificationCategory(identifier: "myNotificationCategory", actions: [favAction, dismiss], intentIdentifiers: [], options: [])
         UNUserNotificationCenter.current().setNotificationCategories([category])
         
     }
@@ -63,8 +63,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate{
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        
-        
         print("Response recieved for \(response.actionIdentifier)")
         completionHandler()
     }
